@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{generalexam}[1996/01/10 v3.0A
+\ProvidesClass{prospectus}[1996/01/10 v3.0A
   adapted from  USC Thesis and Dissertation Style]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
