@@ -1,336 +1,5 @@
-% OUdisser.cls was hacked by Brian Fiedler,  and is obviously
-% derived from USCthesis.cls.  If you need more than 3 signature
-% lines for a thesis, or more than 5 for a dissertation, scan
-% forward to "signature lines" and hack the source code...
-% revised March 3, 2004 to have names printed under signature lines
-% revised July 15, 2006 to make TOC and Bibliography single space and to 
-% avoid use of either setspace.sty or doublespace.sty
-% revised April 19, 2007 for for stricter conformance to Grad College standards
-% Seach forward to OUdoublespace... 
-% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% USCthesis.cls
-%%% Experimental LaTeX2e version of the University of Southern
-%%% California thesis and dissertation style.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%% @LaTeX-style-file{
-%%%    Author     = "Steven Douglas Cochran",
-%%%    Version    = "3.0A (Experimental)",
-%%%    Date       = "10 January 1996",
-%%%    Time       = "15:37:52 EDT",
-%%%    Filename   = "USCthesis.sty",
-%%%    Address    = "Digital Mapping Laboratory, School of Computer Science
-%%%                  Carnegie-Mellon University, 5000 Forbes Avenue
-%%%                  Pittsburgh, PA 15213-3890, USA",
-%%%    Telephone  = "(412) 268-5654",
-%%%    FAX        = "(412) 268-5576",
-%%%    Email      = "sdc+@CS.CMU.EDU (Internet)",
-%%%    CodeTable  = "ISO/ASCII",
-%%%    Keywords   = "LaTeX, Thesis, Dissertation",
-%%%    Supported  = "yes",
-%%%    Abstract   = "LaTeX document-style for typesetting Theses or
-%%%                  Dissertations in accordance with the University
-%%%                  of Southern California Regulations for Format and
-%%%                  Presentation of Theses and Dissertations.  It
-%%%                  provides some alternative ``bells and whistles''
-%%%                  such as support for multi-volume documents." 
-%%%    Note       = "Requires Stephen Page's `doublespace' style
-%%%                  option (or equivalent) in addition to the
-%%%                  standard LaTeX2e `report' style." 
-%%%    SeeAlso    = "techreport.sty"
-%%% }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%$% $Log:       USCthesis.sty,v $
-%$%
-%$%  Revision 3.0A 96/01/10  15:37:52 sdc
-%$%  Converted for use with LaTeX2e.
-%$%
-%$%  Revision 2.3  92/08/13  14:22:21  sdc
-%$%  Added \universityname for easy use outside USC.  Also the 
-%$%  \if@techreport switch can be used to turn off the one-side-only
-%$%  warning message (for better interface with the techreport style
-%$%  option).  Placed a check for TeX-3.0 to allow an old TeX to work
-%$%  without warnings.  Cleaned-up the code and comments a little.
-%$%
-%$%  Revision 2.2  92/06/29  10:59:15  sdc
-%$%  Added standard file header for style.
-%$%  
-%$%  Revision 2.1  91/02/09  00:54:08  cochran
-%$%  Fixed bug in interaction with techreport.sty.
-%$%
-%$%  Revision 2.0  91/01/03  16:12:48  cochran
-%$%  Merged divergent branches by cochran@iris.usc.edu (1.10) and by
-%$%  tli@almaak.usc.edu (1.11); these are common up to revision 1.8.
-%$%  Removed fix in 1.11 which added Reference List to the TOC since
-%$%  this is handled by the \references command.
-%$%  
-%$%    Changes by tli@almaak.usc.edu:
-%$%  
-%$%      1.11 (90/09/23) Change title font to 12pt.  Change author's
-%$%      font to 12pt.  Fix Reference List so that it shows up in TOC.
-%$%      Break the way that appendices show up in TOC.
-%$%  
-%$%      1.10 (90/07/10) Added a hack to make it work with TeX 3.0.
-%$%  
-%$%      1.9 (90/01/30) Make subsubsections show up with numbered
-%$%      labels and in the TOC.
-%$%  
-%$%    Changes by cochran@iris.usc.edu:
-%$%  
-%$%      1.10 (90/12/29) Added commands and modified \title to allow
-%$%        multiple volume dissertations.  Fixed bug which caused the
-%$%        pagestyle of the TOC to be wrong if there were no
-%$%        preceeding prefacesections. 
-%$%  
-%$%      1.9 (90/12/03)  Corrected title size to correspond to the
-%$%        University Publications statement that the "Title must be
-%$%        the same size as `FACULTY OF ...' and no bold print.  Also
-%$%        added an optional argument to the \pageleft command to
-%$%        allow the fine tuning of the gutter margin in the
-%$%        techreport style option. 
-%$%  
-%$%  Revision 1.8  89/09/15  19:39:11  tli
-%$%  Change spacing in accordance with University Publications.
-%$%
-%$%  Revision 1.7  89/01/27  13:56:04  tli
-%$%  Too much space after a saying.
-%$%
-%$%  Revision 1.6  89/01/26  14:01:20  tli
-%$%  Added the saying environment.
-%$%
-%$%  Revision 1.5  88/11/02  10:42:47  cochran
-%$%  Minor corrections and removal of unnecessary \makeatletter and
-%$%  \makeatother. 
-%$%  
-%$%  Revision 1.4  88/10/20  11:58:38  cochran
-%$%  Updated to allow the user more control over spacing to the "blue
-%$%  lines," and to be in accordance with the USC Regulations for
-%$%  Format and Presentation of Theses and Dissertations, published
-%$%  March 1987.  
-%$%  
-%$%  Revision 1.3  88/03/16  10:49:19  cochran
-%$%  Several small updates to \committee as suggested by peng@USC-IRIS.
-%$%  
-%$%  Revision 1.1  88/03/05  20:04:51  cochran
-%$%  Set penalties, and new margin and page sizes.  Fixed bug which
-%$%  caused a wrong contents page for long lists of figures or tables. 
-%$%  
-%$%  Revision 1.0  87/03/05  18:29:34  cochran
-%$%  Created by combining the best (?) features of the dissertation
-%$%  styles written by Herb Barad @ USC-SIPI and Howard Trickey @
-%$%  Stanford University. 
-%$%  
-%$% NOTE:  This style assumes the existance of Stephen Page's
-%$%        `doublespace' style option in addition to the standard
-%$%        LaTeX `report' style.  
-%%%
-%%% Example:
-%%%  
-%%%    \documentclass[12pt]{USCthesis}
-%%%    \begin{document}
-%%%    \title[Volume I]{Dissertation Title}
-%%%    \author{Terry FullName Candidate}
-%%%    \committee{J.~Smith & (Chairperson)\\*
-%%%               N.~Jones\\*
-%%%               S.~Foobar & (Outside Member)}
-%%%    \begin{preface}
-%%%      \prefacesection{Dedication}
-%%%        This dissertation is dedicated to . . .
-%%%      \prefacesection{Acknowledgements}
-%%%        I would like to thank . . .
-%%%      \begin{singlespace}
-%%%        \tableofcontents
-%%%        \listoftables
-%%%        \listoffigures
-%%%      \end{singlespace}
-%%%      \prefacesection{Abstract}
-%%%        This dissertation contains all knowledge about . . .
-%%%    \end{preface}
-%%%    \chapter{Introduction}
-%%%         . . .
-%%%    \chapter{Conclusions}
-%%%         . . .
-%%%    \begin{singlespace}
-%%%      \references{plain}{mybib}
-%%%      \appendix
-%%%      \chapter{A Long Proof}
-%%%         . . .
-%%%    \end{singlespace}
-%%%         . . .
-%%%    \addvolumecontents{thesis_part2}
-%%%    \addvolumecontents{thesis_part3}
-%%%    \addvolumecontents[lof]{thesis_part2}
-%%%    \end{document}
-%%%
-%%% Documentation:
-%%%
-%%%  This style file modifies the standard report style to follow the
-%%%  "USC Regulations for Format and Presentation of Theses and
-%%%  Dissertations" (July 1989) document published by the Office of
-%%%  University Publications. 
-%%%
-%%%  The following options are available for use in the \documentstyle
-%%%  (other options also available as report.sty options or as
-%%%  option.sty files). 
-%%%
-%%%     `10pt' (default) `11pt' or `12pt' base typesize.
-%%%
-%%%     `dissertation' (default), or `thesis' title page.
-%%%
-%%%     `final' (default) or `proposal' layout.
-%%%
-%%%     `copyright' (default) or `nocopyright' message on title page.
-%%%       This affects the `final' layout only. 
-%%%
-%%%     `fussy' (default) or `sloppy' word spacing.  This affects the
-%%%       alignment at the right margin.  Fussy will sometimes write
-%%%       over the blue line but is very useful for finding problem
-%%%       areas during the development of the thesis.  Sloppy will
-%%%       insure that no line passes the right margin, but may need
-%%%       to over stretch the line and thus generate an underfilled
-%%%       hbox message.
-%%%
-%%%     `clref' (default) or `opref' to set the open or closed format
-%%%       of the entries in the references section. 
-%%%
-%%%  The following may be set PRIOR to the \begin{document} in order
-%%%  to make adjustments to fit the text in the "blue lines".  The
-%%%  values listed below are the defaults:  
-%%%
-%%%     \pagetop{1.01 true in}    % 1 inch plus allowance
-%%%     \pageleft{1.51 true in}   % 1.5 inches plus allowance
-%%%     \pageheight{8.73 true in} % 9 inches minus allowance
-%%%     \pagewidth{5.92 true in}  % 6 inches minus allowance
-%%%     \pagemargin{2.0}          % Number of (unstretched) lines
-%%%                               %   between text and page number  
-%%%     \setstretch{1.3}          % Set the "double" spacing
-%%%
-%%%  These values vary according to the printer being used (even
-%%%  different instances of the same brand will transfer the paper
-%%%  just a little differently).  The best way to adjust them is to
-%%%  run three or four pages of the "blue line" paper through the
-%%%  printer that will be used.  Choose pages with full amount of
-%%%  text.  Then adjust the \pageleft (and \pagewidth if necessary) by
-%%%  the average amount necessary over the pages.  Next do the same
-%%%  for \pagetop and \pageheight.  Leave enough allowance to allow
-%%%  for the paper to shift a little, usually a little more in the
-%%%  direction of travel.  Set the \pagemargin and \setstretch to
-%%%  values that look good and will pass the reviewer.
-%%%
-%%%  The following commands control what goes on the title page.
-%%%    
-%%%     \title[volume]{thesis title}
-%%%             - The thesis title is set using the \title command.
-%%%               The optional volume parameter allows the
-%%%               specification of the volume on the title page for
-%%%               long papers which are divided.
-%%%
-%%%     \author{author's full name}
-%%%             - Authors name.
-%%%
-%%%     \universityname{UNIVERSITY OF SOUTHERN CALIFORNIA}
-%%%             - The university's name (the above is the default).
-%%%
-%%%     \schoolname{name of the school granting the degree}
-%%%             - "GRADUATE SCHOOL" is the default.  Changing this
-%%%               also has the effect of turning off the \majorfield
-%%%               entry.  This affects the `final' layout only. 
-%%%
-%%%     \degree{degree name}
-%%%             - defaults to "Master of Science" or "Doctor of
-%%%               Philosophy" depending on whether the `thesis' or
-%%%               `dissertation' option is in effect.  This affects
-%%%               the `final' layout only.
-%%%
-%%%     \majorfield{author's major}
-%%%             - "Electrical Engineering" if omitted.  Changing the
-%%%               \schoolname has the effect of turning off the
-%%%               display of the major field.  If you specify this
-%%%               command after changing the \schoolname, both will be
-%%%               shown on the titlepage.  This affects the `final'
-%%%               layout only.
-%%%
-%%%     \committee{name1\\* name2\\* name3}
-%%%             - Currently this in only used on with the `proposal'
-%%%               option, since the signature page MUST be the one
-%%%               supplied by the University.  This affects the
-%%%               `proposal' layout only.
-%%%
-%%%     \submitdate{month & year in which submitted to Graduate School} 
-%%%             - current month & year if omitted.
-%%%
-%%%     \copyrightyear{year degree conferred (next year if submitted in Dec.)} 
-%%%             - current year (or next year, in December) if omitted.
-%%%               This affects only the `final' layout and only when
-%%%               the `copyright' option is in effect. 
-%%%
-%%%  The PREFACE environment prints the titlepage and sets up the page
-%%%  formatting for the preface pages.  To create a preface section
-%%%  use the command:  
-%%%
-%%%     \prefacesection[optional TOC name]{name}
-%%%    
-%%%  To generate the Table of Contents, and the Lists of Tables and
-%%%  Figures, use the commands: 
-%%%
-%%%     \tableofcontents[CONTENTS]
-%%%     \listoftables*[LIST OF TABLES]
-%%%     \listoffigures*[LIST OF FIGURES]
-%%%
-%%%  the bracketed names are used at the top of the sections and in
-%%%  the Table of Contents for the tables and figures.  The optional
-%%%  `*' in the latter commands suppresses their entry into the Table
-%%%  of Contents.
-%%%
-%%%  When multiple volumes are present (as indicated by the use of the
-%%%  optional argument of the \title command), the Table of Contents
-%%%  may be augmented by specifying the name of the other parts of the
-%%%  document with the command:
-%%%
-%%%     \addvolumecontents[toc]{volumename}
-%%%
-%%%  This command should be placed right after the \begin{document}
-%%%  command to include prior volumes, and just before the
-%%%  \end{document} command to include the contents of later volumes.
-%%%  By default (if the optional [] section is ommited) it reads in
-%%%  the volumename.toc file (if present).  Using [lof] or [lot] work
-%%%  in the same way for the lists of figures and tables respectively.
-%%%
-%%%  To start the document at a page other than 1 (for later volumes)
-%%%  you can use the command: 
-%%%
-%%%     \startingpagenumber{1}{1}
-%%%
-%%%  prior to the \begin{preface} command.  The first argument is the
-%%%  page number of the titlepage and subsequent pages numbered with
-%%%  roman numerals and the second is the number of the first page
-%%%  after the preface section. The defaults are shown above. 
-%%%
-%%%  To include a reference section, use the following command:
-%%%
-%%%     \references*[Reference List]{style}{bibfile(s)}
-%%%
-%%%  where the `*' is optional and indicates that you DO NOT want this
-%%%  section to appear in the Table-of-Contents.  "Reference List" is
-%%%  the default name if the optional `[]' section of the command is
-%%%  not specified (the USC Regulations suggest either `Reference
-%%%  List' or `Bibliography').  Both of the remaining entries MUST be
-%%%  specified.  {Style} is any of "plain", "unsrt", "alpha", "abbrv"
-%%%  (or other *.bst format file).  The {bibfile(s)} are a list of one
-%%%  or more *.bib filenames from which the references are to be taken. 
-%%%
-%%%  The `saying' environment is used to set a cutesy little quotation
-%%%  at the start of the chapter, just after the chapter head.  To use:
-%%%
-%%%     \begin{saying}
-%%%         If this exercise isn't just a joke, the title of \\
-%%%         this appendix is a lie.
-%%%     \end{saying}
-%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{OUdissertation3}[1996/01/10 v3.0A 
+\ProvidesClass{generalexam}[1996/01/10 v3.0A
   adapted from  USC Thesis and Dissertation Style]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -388,15 +57,12 @@
 
 \LoadClass{report}
 
-%\RequirePackage{doublespace} % Brian deleted this legacy from USC on July 10 2006
-
 % Brian uses method in 4.1 of book "Guide to LaTeX" to change spacing.  Note
 % the "\small\normalsize" is a "trick" needed to trigger the change, except for
 % that, it does nothing.
 % Note the 1.3 is not the standard double space, but Grad College might accept it.
 % The standard double space is 1.66, I believe.
 \newcommand{\OUdoublespace}{\renewcommand{\baselinestretch}{1.66} \small\normalsize} %LMK 1.66
-%\newcommand{\OUdoublespace}{\renewcommand{\baselinestretch}{2.0} \small\normalsize} %LMK 1.66
 \newcommand{\OUsinglespace}{\renewcommand{\baselinestretch}{1.0} \small\normalsize}
 \OUdoublespace
 
@@ -409,9 +75,9 @@
 \newcommand{\pageleft}[2][0pt]{%
   \if@twoside
     \global \oddsidemargin #2
-    \global\advance \oddsidemargin -1.0 true in 
+    \global\advance \oddsidemargin -1.0 true in
     \global \evensidemargin #2
-    \global\advance \evensidemargin -1.5 true in 
+    \global\advance \evensidemargin -1.0 true in
     \global\advance \evensidemargin #1
     \flushbottom
     \if@proposal\else\if@techreport\else
@@ -420,7 +86,7 @@
     \fi\fi
   \else
     \global \oddsidemargin #2
-    \global\advance \oddsidemargin -1.0 true in 
+    \global\advance \oddsidemargin -1.0 true in
     \global \evensidemargin \oddsidemargin
     \raggedbottom
   \fi}
@@ -445,21 +111,14 @@
 \@addtoreset{equation}{chapter}
 \headheight 0.0 true pt
 \headsep    0.0 true pt
-\topskip   10.0 true pt
+\topskip    0.0 true pt
 \itemsep    0.0 true pt
 
-%\pagetop{1.01 true in}
-\pagetop{1.00 true in}
-%\pageleft{1.51 true in}
-\pageleft{1.50 true in}
-%\pageheight{8.73 true in}
-\pageheight{9.45 true in}
-%\pagewidth{5.92 true in}
-\pagewidth{6.00 true in}
-%\pagemargin{2.0}
-\pagemargin{1.5}
-
-
+\pagetop{1.0 true in}
+\pageleft{1.0 true in}
+\pageheight{9.0 true in}
+\pagewidth{6.50 true in}
+\pagemargin{1.0}
 
 \let\LARGE=\Large
 \let\huge=\Large
@@ -485,7 +144,7 @@
 
 
 \newcommand{\thesisinput}[1]{%
-  \if@filesw 
+  \if@filesw
     \begingroup
       \let\thesisinput=\@gobble
       \@input{#1}%
@@ -493,7 +152,7 @@
   \fi}
 
 \newcommand{\addvolumecontents}[2][toc]{%
-  \if@filesw 
+  \if@filesw
     \begingroup
       \let\label\@gobble
       \let\index\@gobble
@@ -529,15 +188,15 @@
 \newcommand{\schoolname}[1]{%
   \gdef\@schoolname{#1}%
   \@showmajorfieldfalse}
-\newcommand{\@schoolname}{GRADUATE COLLEGE}
+\newcommand{\@schoolname}{SCHOOL OF METEOROLOGY}
 
-\newcommand{\degree}[1]{%
-  \if@thesis 
+\newcommand{\Degree}[1]{%
+  \if@thesis
     \gdef\@mastersdegree{#1}%
-  \else 
+  \else
     \gdef\@doctorsdegree{#1}}
 \newcommand{\@mastersdegree}{MASTER OF SCIENCE IN METEOROLOGY} %in metr added LMK 9 May 2007
-\newcommand{\@doctorsdegree}{Doctor of Philosophy}
+\newcommand{\@doctorsdegree}{DOCTOR of PHILOSOPHY}
 
 \newcommand{\majorfield}[1]{%
   \gdef\@majorfield{#1}%
@@ -579,7 +238,7 @@
     \or November%
     \or December%
   \fi
-  \space 
+  \space
   \number \the\year}
 
 \newcommand{\copyrightyear}[1]{\gdef\@copyrightyear{#1}}
@@ -606,9 +265,12 @@
        \setcounter{page}{3}%
        \addtocounter{page}{\@startpageA}%
      \fi
+   %
+   %to use hypperref, you need to add an additional {} at the end of \addcontents below
+   %
    \newpage
      \ifx\@volume\@empty\else
-       \addtocontents{toc}{\protect\contentsline{part}{\@volume}{}}%
+       \addtocontents{toc}{\protect\contentsline{part}{\@volume}{}{}}%
      \fi
    \pagestyle{plain}}
 %
@@ -616,9 +278,9 @@
    \pagenumbering{arabic}%
    \pagestyle{plain}%
    \setcounter{page}{\@startpageB}}
-   
+
 \newcommand{\makecopyright}{%
- \begin{titlepage}%   
+ \begin{titlepage}%
     \begin{center}
     \ \\
     \vskip 8.5 true in% %changed 7.0 to 8.5 LMK 10 May 2007
@@ -628,7 +290,7 @@
     \end{center}
   \end{titlepage}
   }
-  
+
 \newcommand{\makesignature}{%
   \begin{titlepage}%
   \OUsinglespace
@@ -653,7 +315,7 @@
 	  \else
         {\vskip .5in}
 	  \fi
-	  
+
 %      {{By}\\*[5.0 true cm]% %changed 1 to 5 LMK 2 May 2007
       {{By}\\*[2.0 true cm]% %changed  5 to 3 BHF 25 November 2007
           \par}
@@ -668,13 +330,13 @@
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@membertwo 
+\hspace*{3in}\@membertwo
 \vskip .5in
 %
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@memberthree 
+\hspace*{3in}\@memberthree
 \vskip .5in
 %
 \if@thesis
@@ -683,20 +345,20 @@
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@memberfour 
+\hspace*{3in}\@memberfour
 \vskip .5in
 %
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@memberfive 
+\hspace*{3in}\@memberfive
 \vskip .5in
 %uncomment the following 4 lines if you have 6 members
-%\noindent
-%\hspace*{3in}\hrulefill
-%\vskip .0in
-%\hspace*{3in}\@membersix 
-%
+\noindent
+\hspace*{3in}\hrulefill
+\vskip .0in
+\hspace*{3in}\@membersix
+
 \fi
 
     \par
@@ -710,12 +372,13 @@
     \null
     \vfill
     \begin{center}%
-      UNIVERSITY OF OKLAHOMA\\*[0.1 true in]%
-     GRADUATE COLLEGE\\*[0.1 true in]%
-%  
+     \@university \\*[0.1 true in]%
+     \@schoolname \\*[0.1 true in]%
+%
       \vfill
-%      
+%
       %%% {\bf \LARGE \@title \par} %obsolete April 19, 2007
+ 	\noindent
  	\OUdoublespace %title is double space on title page only
       {\@title \par} %strict conformance to Grad College, April 19, 2007
  	\OUsinglespace
@@ -724,39 +387,30 @@
         \@volume
       \fi
       \vskip 0.16 true in
-%      by%
-%      \vskip 0.16 true in
-%      {\begin{tabular}[t]{c}\@author\\*[1.0 true in]%
-%       \hline
-%       \end{tabular}%
-%       \par}
       \vskip 1.0 true in
+
       \if@thesis
         A THESIS %
       \else
-        A PROSPECTUS%
-      \fi\\*[0.1 true in]%
-     SUBMITTED TO THE GRADUATE FACULTY\\*[0.1 true in]%
+       A PROSPECTUS%
+      \fi\\*[0.05 true in]%
+
+      \if@thesis
+      SUBMITTED TO THE GRADUATE FACULTY\\*[0.25 true in]%
+      \else
+      SUBMITTED TO THE DOCTORAL COMMITTEE\\*[0.25 true in]%
+
+
       in partial fulfillment of the requirements for the\\*[0.1 true in]%
       \if@thesis
      Degree of\\*[0.1 true in]% %little d 9 May 2007 LMK % not needed APB
         \@mastersdegree
       \else
-     degree of\\*[0.1 true in]%
-        \@doctorsdegree
+     Degree of\\*[0.1 true in]%
+     \@doctorsdegree
       \fi\\*[0.1 true in]%
-%      \if@showmajorfield
-%        (\@majorfield)%
-%      \fi\\*[1.0 true cm]%
+
       \vfill
-%%%bhf      By%
-%%%bhf      \vskip 0.16 true in
-%%%bhf      \@author\\*[0.1 true in]%
-%%%bhf      Norman, Oklahoma\\*[0.1 true in]%
-%      {\begin{tabular}[t]{c}\@author\\*[0.1 true in]%
-%       \end{tabular}%
-%       \par}
-%%%bhf       {\reset@font\small \@depositdate \par}%
 \OUsinglespace
       By\\
       \vskip 0.16 true in
@@ -776,7 +430,7 @@
   }
 
 
-  
+
 \newdimen\prefacetopspace
 \prefacetopspace=1.0 true in
 
@@ -844,7 +498,7 @@
   \chapter*{#2}%
   \@starttoc{#1}%
   \if@restonecol\twocolumn\fi}
-  
+
 \def\@speciallist#1[#2]{%
   \newpage
   \@restonecolfalse
@@ -856,30 +510,30 @@
   \addcontentsline{toc}{chapter}{#2}
   \@starttoc{#1}%
   \if@restonecol\twocolumn\fi}
-  
+
 \renewcommand{\@makechapterhead}[1]{%
-  \vspace*{50pt}%
-  {\parindent 0pt 
+  {\parindent 0pt
    \raggedright
    \hyphenpenalty 10000%
    \ifnum \c@secnumdepth > \m@ne
-     \reset@font\Large\bfseries \@chapapp{} \thechapter\par
-     \vskip 20pt
+     \reset@font\Large\bfseries \thechapter \hspace{3.0ex} #1\par
    \fi
-   \reset@font\Large\bfseries #1\par
    \nobreak
-   \vskip 40pt}
+   \vskip 20px}
   \hyphenpenalty 50}
 
-\renewcommand{\@makeschapterhead}[1]{%
-  \vspace*{50pt}%
-  {\parindent 0pt 
+  \renewcommand{\@makeschapterhead}[1]{%
+  %\vspace*{50pt}%
+  {\parindent 0pt
    \raggedright
    \hyphenpenalty 10000%
    \reset@font\Large\bfseries #1\par
-   \nobreak
-   \vskip 40pt}
+   \nobreak}
   \hyphenpenalty 50}
+
+\OUsinglespace
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -889,7 +543,7 @@
              {\z@}%
              {-3.5ex plus -1ex minus -.2ex}%
              {2.3ex plus .2ex}%
-             {\reset@font\Large\bfseries\hyphenpenalty 10000}}%
+             {\reset@font\large\bfseries\hyphenpenalty 10000}}%
 
 \renewcommand{\subsection}%
              {\@startsection{subsection}%
@@ -965,7 +619,7 @@
 %\begingroup
 %\let\do\ef@makeinnocent \dospecials
 %\ef@makeinnocent\^^L% and whatever other special cases
-%\endlinechar‘\^^M \catcode‘\^^M=12 \ef@xsidetable}
+%\endlinechar√î\^^M \catcode√î\^^M=12 \ef@xsidetable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\bibliographystyle}[1]{%
@@ -989,7 +643,6 @@
   \@ifnextchar [%
     {\@referencesAA}%
     {\@referencesAA[Reference List]}}%
-
 \def\@referencesAA[#1]#2#3{
   \gdef\@referencesname{#1}
   \if@filesw
@@ -1004,6 +657,7 @@
     {\@referencesBB[Reference List]}}
 
 \def\@referencesBB[#1]#2#3{%
+  \cleardoublepage
   \addcontentsline{toc}{chapter}{#1}
   \gdef\@referencesname{#1}
   \if@filesw
@@ -1013,6 +667,7 @@
   \@input{\jobname.bbl}}
 
 \newcommand{\@referencesname}{Reference List}
+\renewcommand{\bibname}{Reference List\vskip 20px}
 
 \renewenvironment{thebibliography}[1]
   {\chapter*{\@referencesname\@mkboth{\@referencesname}{\@referencesname}}
@@ -1055,7 +710,7 @@
     \addtocontents{lof}{\protect\addvspace{10pt}}% Adds between-chapter space
     \addtocontents{lot}{\protect\addvspace{10pt}}% to lists of figs & tables.
     \if@twocolumn
-      \@topnewpage[\@makechapterhead{##2}]  
+      \@topnewpage[\@makechapterhead{##2}]
     \else \@makechapterhead{##2}
       \@afterheading
     \fi}}
@@ -1076,5 +731,5 @@
   \input{techreport.sty}
 \fi
 \endinput
-%% 
+%%
 %% End of file `USCthesis.cls'.

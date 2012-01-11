@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{generalexam}[1996/01/10 v3.0A 
+\ProvidesClass{generalexam}[1996/01/10 v3.0A
   adapted from  USC Thesis and Dissertation Style]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -75,9 +75,9 @@
 \newcommand{\pageleft}[2][0pt]{%
   \if@twoside
     \global \oddsidemargin #2
-    \global\advance \oddsidemargin -1.0 true in 
+    \global\advance \oddsidemargin -1.0 true in
     \global \evensidemargin #2
-    \global\advance \evensidemargin -1.0 true in 
+    \global\advance \evensidemargin -1.0 true in
     \global\advance \evensidemargin #1
     \flushbottom
     \if@proposal\else\if@techreport\else
@@ -86,7 +86,7 @@
     \fi\fi
   \else
     \global \oddsidemargin #2
-    \global\advance \oddsidemargin -1.0 true in 
+    \global\advance \oddsidemargin -1.0 true in
     \global \evensidemargin \oddsidemargin
     \raggedbottom
   \fi}
@@ -144,7 +144,7 @@
 
 
 \newcommand{\thesisinput}[1]{%
-  \if@filesw 
+  \if@filesw
     \begingroup
       \let\thesisinput=\@gobble
       \@input{#1}%
@@ -152,7 +152,7 @@
   \fi}
 
 \newcommand{\addvolumecontents}[2][toc]{%
-  \if@filesw 
+  \if@filesw
     \begingroup
       \let\label\@gobble
       \let\index\@gobble
@@ -191,9 +191,9 @@
 \newcommand{\@schoolname}{SCHOOL OF METEOROLOGY}
 
 \newcommand{\Degree}[1]{%
-  \if@thesis 
+  \if@thesis
     \gdef\@mastersdegree{#1}%
-  \else 
+  \else
     \gdef\@doctorsdegree{#1}}
 \newcommand{\@mastersdegree}{MASTER OF SCIENCE IN METEOROLOGY} %in metr added LMK 9 May 2007
 \newcommand{\@doctorsdegree}{DOCTOR of PHILOSOPHY}
@@ -238,7 +238,7 @@
     \or November%
     \or December%
   \fi
-  \space 
+  \space
   \number \the\year}
 
 \newcommand{\copyrightyear}[1]{\gdef\@copyrightyear{#1}}
@@ -278,9 +278,9 @@
    \pagenumbering{arabic}%
    \pagestyle{plain}%
    \setcounter{page}{\@startpageB}}
-   
+
 \newcommand{\makecopyright}{%
- \begin{titlepage}%   
+ \begin{titlepage}%
     \begin{center}
     \ \\
     \vskip 8.5 true in% %changed 7.0 to 8.5 LMK 10 May 2007
@@ -290,7 +290,7 @@
     \end{center}
   \end{titlepage}
   }
-  
+
 \newcommand{\makesignature}{%
   \begin{titlepage}%
   \OUsinglespace
@@ -315,7 +315,7 @@
 	  \else
         {\vskip .5in}
 	  \fi
-	  
+
 %      {{By}\\*[5.0 true cm]% %changed 1 to 5 LMK 2 May 2007
       {{By}\\*[2.0 true cm]% %changed  5 to 3 BHF 25 November 2007
           \par}
@@ -330,13 +330,13 @@
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@membertwo 
+\hspace*{3in}\@membertwo
 \vskip .5in
 %
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@memberthree 
+\hspace*{3in}\@memberthree
 \vskip .5in
 %
 \if@thesis
@@ -345,19 +345,19 @@
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@memberfour 
+\hspace*{3in}\@memberfour
 \vskip .5in
 %
 \noindent
 \hspace*{3in}\hrulefill
 \vskip .0in
-\hspace*{3in}\@memberfive 
+\hspace*{3in}\@memberfive
 \vskip .5in
 %uncomment the following 4 lines if you have 6 members
 %\noindent
 %\hspace*{3in}\hrulefill
 %\vskip .0in
-%\hspace*{3in}\@membersix 
+%\hspace*{3in}\@membersix
 %
 \fi
 
@@ -374,9 +374,9 @@
     \begin{center}%
      \@university \\*[0.1 true in]%
      \@schoolname \\*[0.1 true in]%
-%  
+%
       \vfill
-%      
+%
       %%% {\bf \LARGE \@title \par} %obsolete April 19, 2007
  	\noindent
  	\OUdoublespace %title is double space on title page only
@@ -395,16 +395,16 @@
         THE WRITTEN PORTION OF THE GENERAL EXAMINATION%
       \fi\\*[0.05 true in]%
      SUBMITTED TO THE GRADUATE FACULTY\\*[0.25 true in]%
-      
+
       in partial fulfillment of the requirements for the\\*[0.1 true in]%
       \if@thesis
      Degree of\\*[0.1 true in]% %little d 9 May 2007 LMK % not needed APB
         \@mastersdegree
       \else
-     Degree of\\*[0.1 true in]% 
+     Degree of\\*[0.1 true in]%
      \@doctorsdegree
       \fi\\*[0.1 true in]%
-      
+
       \vfill
 \OUsinglespace
       By\\
@@ -425,7 +425,7 @@
   }
 
 
-  
+
 \newdimen\prefacetopspace
 \prefacetopspace=1.0 true in
 
@@ -493,7 +493,7 @@
   \chapter*{#2}%
   \@starttoc{#1}%
   \if@restonecol\twocolumn\fi}
-  
+
 \def\@speciallist#1[#2]{%
   \newpage
   \@restonecolfalse
@@ -505,9 +505,9 @@
   \addcontentsline{toc}{chapter}{#2}
   \@starttoc{#1}%
   \if@restonecol\twocolumn\fi}
-  
+
 \renewcommand{\@makechapterhead}[1]{%
-  {\parindent 0pt 
+  {\parindent 0pt
    \raggedright
    \hyphenpenalty 10000%
    \ifnum \c@secnumdepth > \m@ne
@@ -516,10 +516,10 @@
    \nobreak
    \vskip 20px}
   \hyphenpenalty 50}
-  
+
   \renewcommand{\@makeschapterhead}[1]{%
   %\vspace*{50pt}%
-  {\parindent 0pt 
+  {\parindent 0pt
    \raggedright
    \hyphenpenalty 10000%
    \reset@font\Large\bfseries #1\par
@@ -614,7 +614,7 @@
 %\begingroup
 %\let\do\ef@makeinnocent \dospecials
 %\ef@makeinnocent\^^L% and whatever other special cases
-%\endlinechar‘\^^M \catcode‘\^^M=12 \ef@xsidetable}
+%\endlinechar√î\^^M \catcode√î\^^M=12 \ef@xsidetable}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \renewcommand{\bibliographystyle}[1]{%
@@ -705,7 +705,7 @@
     \addtocontents{lof}{\protect\addvspace{10pt}}% Adds between-chapter space
     \addtocontents{lot}{\protect\addvspace{10pt}}% to lists of figs & tables.
     \if@twocolumn
-      \@topnewpage[\@makechapterhead{##2}]  
+      \@topnewpage[\@makechapterhead{##2}]
     \else \@makechapterhead{##2}
       \@afterheading
     \fi}}
@@ -726,5 +726,5 @@
   \input{techreport.sty}
 \fi
 \endinput
-%% 
+%%
 %% End of file `USCthesis.cls'.

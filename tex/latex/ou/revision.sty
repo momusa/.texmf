@@ -1,1 +1,5 @@
-\IfFileExists{__git_version__}{\usepackage{fancyheadings}\pagestyle{fancyplain}\rfoot[\fancyplain{}{}]{\input{__git_version__}}} {}
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead{}
+\renewcommand{\headrulewidth}{0pt}
+\IfFileExists{__git_version__}{\fancyfoot[RO,RE]{\emph{\input{__git_version__}}}} {}
