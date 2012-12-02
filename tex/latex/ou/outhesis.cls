@@ -363,6 +363,16 @@
   \newpage%
 }
 
+% Control headings justification
+\newcommand*{\justheading}{\raggedright}
+\titleformat{\chapter}[display]
+  {\normalfont\huge\bfseries\justheading}{\chaptertitlename\ \thechapter}
+  {20pt}{\Large}
+\titleformat{\section}
+  {\normalfont\Large\bfseries\justheading}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries\justheading}{\thesubsection}{1em}{}
+
 % Signature page
 \def\signature#1{%
   \parbox[t]{2.5in}{%
@@ -450,8 +460,10 @@
 }
 
 %%% BIBLIOGRAPHY
+\renewcommand\bibname{References}  % Name on the Reference Page
 \newenvironment{oubibliography}{%
-  \newpage\begin{singlespace}\addcontentsline{toc}{chapter}{Bibliography}%
+  \newpage\begin{singlespace}\addcontentsline{toc}{chapter}{References}
+  % Sets the name on the table of contents
 }{\end{singlespace}}
 
 % Appendix
