@@ -270,26 +270,27 @@
 \gdef\@chair{Chair Name}
 
 %%% TITLE FORMAT
+\newcommand*{\justheading}{\raggedright}
 \titleformat{\part}[display]
-  {\normalfont\large\filcenter\bfseries}
-  {\large Part \thepart}{1pc}{\large}
+  {\normalfont\Large\justheading\bfseries}
+  {\Large Part \thepart}{1pc}{\Large}
 \titleformat{\chapter}[display]
-  {\normalfont\large\filcenter\bfseries}
-  {\large\chaptertitlename\ \thechapter}{1pc}{\large}
+  {\normalfont\huge\justheading\bfseries}
+  {\huge\chaptertitlename\ \thechapter}{1pc}{\Large}
 \titleformat{\section}
-  {\normalfont\large\bfseries}
+  {\normalfont\large\justheading\bfseries}
   {\thesection}{1em}{}
 \titleformat{\subsection}
-  {\normalfont\normalsize\bfseries}
+  {\normalfont\large\justheading\bfseries}
   {\thesubsection}{1em}{}
 \titleformat{\subsubsection}
-  {\normalfont\normalsize\bfseries}
+  {\normalfont\normalsize\justheading\bfseries}
   {\thesubsubsection}{1em}{}
 \titleformat{\paragraph}[runin]
-  {\normalfont\normalsize\bfseries}
+  {\normalfont\normalsize\justheading\bfseries}
   {\theparagraph}{1em}{}
 \titleformat{\subparagraph}[runin]
-  {\normalfont\normalsize\bfseries}
+  {\normalfont\normalsize\justheading\bfseries}
   {\thesubparagraph}{1em}{}
 
 \titlespacing*{\chapter}      {0pt}{0pt}{40pt}
@@ -362,16 +363,6 @@
   }%
   \newpage%
 }
-
-% Control headings justification
-\newcommand*{\justheading}{\raggedright}
-\titleformat{\chapter}[display]
-  {\normalfont\huge\bfseries\justheading}{\chaptertitlename\ \thechapter}
-  {20pt}{\Large}
-\titleformat{\section}
-  {\normalfont\Large\bfseries\justheading}{\thesection}{1em}{}
-\titleformat{\subsection}
-  {\normalfont\large\bfseries\justheading}{\thesubsection}{1em}{}
 
 % Signature page
 \def\signature#1{%
